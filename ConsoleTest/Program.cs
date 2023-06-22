@@ -1,5 +1,4 @@
-﻿
-using F23L034_GestContact_Cqs.WebApp.Models.Commands;
+﻿using F23L034_GestContact_Cqs.WebApp.Models.Commands;
 using F23L034_GestContact_Cqs.WebApp.Models.Entities;
 using F23L034_GestContact_Cqs.WebApp.Models.Queries;
 using F23L034_GestContact_Cqs.WebApp.Models.Repositories;
