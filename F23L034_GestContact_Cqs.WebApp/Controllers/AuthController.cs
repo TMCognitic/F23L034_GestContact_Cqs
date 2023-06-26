@@ -5,16 +5,19 @@ using Microsoft.AspNetCore.Mvc;
 using F23L034_GestContact_Cqs.WebApp.Models.Queries;
 using F23L034_GestContact_Cqs.WebApp.Models.Commands;
 using Tools.Cqs.Commands;
+using F23L034_GestContact_Cqs.WebApp.Infrastructure;
 
 namespace F23L034_GestContact_Cqs.WebApp.Controllers
 {
     public class AuthController : Controller
     {
         private readonly IAuthRepository _authRepository;
+        private readonly ISessionManager _sessionManager;
 
-        public AuthController(IAuthRepository authRepository)
+        public AuthController(IAuthRepository authRepository, ISessionManager sessionManager)
         {
             _authRepository = authRepository;
+            _sessionManager = sessionManager;
         }
 
         public IActionResult Index()
@@ -43,7 +46,7 @@ namespace F23L034_GestContact_Cqs.WebApp.Controllers
                 return View(form);
             }
 
-            //Ajout dans les variable de sessions
+            _sessionManager.UserInfo = new UserInfo { Id = utilisateur.Id, Nom = utilisateur.Nom, Prenom = utilisateur.Prenom };
 
             return RedirectToAction("Index", "Home");
         }
@@ -70,6 +73,12 @@ namespace F23L034_GestContact_Cqs.WebApp.Controllers
             }
                 
             return RedirectToAction(nameof(Login));           
+        }
+
+        public IActionResult Disconnect()
+        {
+            _sessionManager.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
