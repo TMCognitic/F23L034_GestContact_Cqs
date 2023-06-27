@@ -31,7 +31,7 @@ namespace F23L034_GestContact_Cqs.WebApp.Models.Services
 
         #region Commands Implementation
 
-        public Result Execute(RegisterCommand command)
+        public IResult Execute(RegisterCommand command)
         {            
             try
             {
@@ -39,11 +39,11 @@ namespace F23L034_GestContact_Cqs.WebApp.Models.Services
                 //Appeler la procédure CSP_Register
                 _dbConnection.ExecuteNonQuery("CSP_Register", true, command);
                 _dbConnection.Close();
-                return Result.Success();
+                return IResult.Success();
             }
             catch (Exception ex)
             {
-                return Result.Failure(ex.Message);
+                return IResult.Failure(ex.Message);
             }
         }
         #endregion

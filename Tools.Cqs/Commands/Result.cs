@@ -1,6 +1,6 @@
 ﻿namespace Tools.Cqs.Commands
 {
-    public class Result
+    internal class Result : IResult
     {
         public static Result Success()
         {
@@ -16,10 +16,10 @@
         public bool IsFailure { get { return !IsSuccess; } }
         public string? Message { get; init; }
 
-        private Result(bool isSuccess, string? message)
+        internal Result(bool isSuccess, string? message)
         {
             IsSuccess = isSuccess;
             Message = message;
-        }        
+        }
     }
 }

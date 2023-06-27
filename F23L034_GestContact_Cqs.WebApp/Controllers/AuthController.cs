@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using F23L034_GestContact_Cqs.WebApp.Models.Queries;
 using F23L034_GestContact_Cqs.WebApp.Models.Commands;
 using Tools.Cqs.Commands;
+using Cqs = Tools.Cqs.Commands;
+
 using F23L034_GestContact_Cqs.WebApp.Infrastructure;
 
 namespace F23L034_GestContact_Cqs.WebApp.Controllers
@@ -64,7 +66,7 @@ namespace F23L034_GestContact_Cqs.WebApp.Controllers
                 return View(form);
             }
 
-            Result result = _authRepository.Execute(new RegisterCommand(form.Nom, form.Prenom, form.Email, form.Passwd));
+            Cqs.IResult result = _authRepository.Execute(new RegisterCommand(form.Nom, form.Prenom, form.Email, form.Passwd));
 
             if(result.IsFailure)
             {

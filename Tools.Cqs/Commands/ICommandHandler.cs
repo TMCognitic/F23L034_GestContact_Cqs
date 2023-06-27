@@ -3,6 +3,6 @@
     public interface ICommandHandler<TCommand>
         where TCommand : ICommand
     {
-        Result Execute(TCommand command);
+        IResult Execute(TCommand command);
     }
 }
